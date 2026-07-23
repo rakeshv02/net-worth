@@ -1,42 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Net Worth Calculator — Track Your Wealth | Tabutility</title>
+  <meta name="description" content="Calculate your net worth instantly. Add all your assets and liabilities to see your true financial picture." />
+  <meta name="keywords" content="net worth calculator, assets liabilities, wealth calculator, personal finance, balance sheet" />
+  <link rel="canonical" href="https://net-worth.tabutility.com/" />
+  <meta property="og:title" content="Net Worth Calculator" />
+  <meta property="og:description" content="Add your assets and liabilities to calculate your net worth instantly." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>" />
+  <meta name="robots" content="index, follow" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7039091592734005" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-78VZWJ5B1W"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-78VZWJ5B1W');</script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="margin:0;background:#f8faff;font-family:'Segoe UI',Arial,sans-serif">
+<div id="root"></div>
+<script type="text/babel">
+//<![CDATA[
+const { useState } = React;
 
-    <!-- ✏️ UPDATE THESE FOR EVERY NEW TOOL -->
-    <title>TOOL NAME — TOOL TAGLINE | Tabutility</title>
-    <meta name="description" content="TOOL DESCRIPTION. No sign-up, runs in your browser." />
-    <meta name="keywords" content="KEYWORD 1, KEYWORD 2, KEYWORD 3, free TOOL NAME" />
-    <link rel="canonical" href="https://SUBDOMAIN.tabutility.com/" />
-    <meta property="og:url" content="https://SUBDOMAIN.tabutility.com/" />
-    <meta property="og:title" content="TOOL NAME — TOOL TAGLINE" />
-    <meta property="og:description" content="TOOL DESCRIPTION. Free, no sign-up." />
-    <meta name="twitter:title" content="TOOL NAME — TOOL TAGLINE" />
-    <meta name="twitter:description" content="TOOL DESCRIPTION. Free, no sign-up." />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>EMOJI</text></svg>" />
-    <!-- ✏️ END OF SECTION TO UPDATE -->
+const defaultAssets = [
+  { label: 'Home / Property', value: 350000 },
+  { label: 'Checking & Savings', value: 12000 },
+  { label: 'Investments / Stocks', value: 45000 },
+  { label: 'Retirement (401k / IRA)', value: 80000 },
+  { label: 'Vehicle(s)', value: 18000 },
+  { label: 'Other Assets', value: 5000 },
+];
+const defaultLiabilities = [
+  { label: 'Mortgage', value: 220000 },
+  { label: 'Car Loan', value: 8000 },
+  { label: 'Student Loans', value: 15000 },
+  { label: 'Credit Cards', value: 3500 },
+  { label: 'Other Debts', value: 2000 },
+];
 
-    <!-- DO NOT CHANGE ANYTHING BELOW THIS LINE -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Tabutility" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="robots" content="index, follow" />
+function fmt(n) {
+  const abs = Math.abs(Math.round(n));
+  return (n < 0 ? '-$' : '$') + abs.toLocaleString();
+}
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7039091592734005" crossorigin="anonymous"></script>
+function Section({ title, color, items, setItems }) {
+  const update = (i, field, val) => { const n=[...items]; n[i]={...n[i],[field]:val}; setItems(n); };
+  const add = () => setItems([...items, { label: 'New Item', value: 0 }]);
+  const remove = (i) => setItems(items.filter((_,j)=>j!==i));
+  const total = items.reduce((s,x)=>s+Number(x.value)||0, 0);
+  return (
+    <div style={{background:'#fff',borderRadius:14,padding:20,boxShadow:'0 2px 12px rgba(0,0,0,0.06)',marginBottom:16}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}}>
+        <div style={{fontWeight:700,fontSize:15,color:'#1a1a2e'}}>{title}</div>
+        <div style={{fontWeight:900,fontSize:16,color}}>{fmt(total)}</div>
+      </div>
+      {items.map((item,i)=>(
+        <div key={i} style={{display:'flex',alignItems:'center',gap:8,marginBottom:8}}>
+          <input value={item.label} onChange={e=>update(i,'label',e.target.value)}
+            style={{flex:1,padding:'8px 10px',borderRadius:8,border:'1px solid #e5e7eb',fontSize:13,outline:'none'}} />
+          <div style={{position:'relative'}}>
+            <span style={{position:'absolute',left:8,top:'50%',transform:'translateY(-50%)',color:'#9ca3af',fontSize:13}}>$</span>
+            <input type="number" value={item.value} onChange={e=>update(i,'value',e.target.value)}
+              style={{width:110,padding:'8px 8px 8px 20px',borderRadius:8,border:'1px solid #e5e7eb',fontSize:13,outline:'none'}} />
+          </div>
+          <button onClick={()=>remove(i)} style={{background:'none',border:'none',cursor:'pointer',color:'#9ca3af',fontSize:16,padding:'0 4px'}}>✕</button>
+        </div>
+      ))}
+      <button onClick={add} style={{marginTop:4,padding:'7px 14px',borderRadius:8,border:`1.5px dashed ${color}`,background:'none',color,fontSize:13,fontWeight:600,cursor:'pointer'}}>+ Add</button>
+    </div>
+  );
+}
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-78VZWJ5B1W"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-78VZWJ5B1W');
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+function App() {
+  const [assets, setAssets] = useState(defaultAssets);
+  const [liabilities, setLiabilities] = useState(defaultLiabilities);
+  const totalAssets = assets.reduce((s,x)=>s+Number(x.value)||0, 0);
+  const totalLiabilities = liabilities.reduce((s,x)=>s+Number(x.value)||0, 0);
+  const netWorth = totalAssets - totalLiabilities;
+  const pct = totalAssets > 0 ? (netWorth / totalAssets * 100).toFixed(0) : 0;
+
+  return (
+    <div style={{maxWidth:540,margin:'0 auto',paddingBottom:40}}>
+      <div style={{background:'#1a1a2e',padding:'12px 20px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+        <a href="https://tabutility.com" style={{color:'#a5b4fc',textDecoration:'none',fontSize:14}}>← All Tools</a>
+        <span style={{color:'#fff',fontWeight:700,fontSize:15}}>⚡ Tabutility</span>
+      </div>
+      <div style={{background:'linear-gradient(135deg,#059669,#065f46)',padding:'28px 20px',textAlign:'center',color:'#fff'}}>
+        <div style={{fontSize:36,marginBottom:8}}>💰</div>
+        <h1 style={{margin:'0 0 6px',fontSize:22,fontWeight:900}}>Net Worth Calculator</h1>
+        <p style={{margin:0,fontSize:13,opacity:0.85}}>Assets − Liabilities = Your financial picture</p>
+      </div>
+      <div style={{padding:20}}>
+        <div style={{background: netWorth >= 0 ? '#f0fdf4' : '#fef2f2',borderRadius:14,padding:20,marginBottom:20,textAlign:'center',boxShadow:'0 2px 12px rgba(0,0,0,0.06)'}}>
+          <div style={{fontSize:13,fontWeight:600,color:'#6b7280',marginBottom:4}}>NET WORTH</div>
+          <div style={{fontSize:42,fontWeight:900,color: netWorth >= 0 ? '#059669' : '#ef4444'}}>{fmt(netWorth)}</div>
+          <div style={{fontSize:13,color:'#6b7280',marginTop:6}}>{pct}% of assets are equity</div>
+          <div style={{display:'flex',gap:20,justifyContent:'center',marginTop:12}}>
+            <div style={{textAlign:'center'}}><div style={{fontSize:11,color:'#6b7280'}}>TOTAL ASSETS</div><div style={{fontWeight:700,color:'#059669'}}>{fmt(totalAssets)}</div></div>
+            <div style={{textAlign:'center'}}><div style={{fontSize:11,color:'#6b7280'}}>TOTAL LIABILITIES</div><div style={{fontWeight:700,color:'#ef4444'}}>{fmt(totalLiabilities)}</div></div>
+          </div>
+        </div>
+        <Section title="Assets" color="#059669" items={assets} setItems={setAssets} />
+        <Section title="Liabilities (Debts)" color="#ef4444" items={liabilities} setItems={setLiabilities} />
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+//]]>
+</script>
+</body>
 </html>
