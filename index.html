@@ -235,6 +235,93 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   }
 })();
 </script>
+
+<section id="seo-content">
+  <style>
+    #seo-content{max-width:760px;margin:2.5rem auto;padding:0 1.25rem 3rem;font-family:'Segoe UI',system-ui,Arial,sans-serif;color:#334155;line-height:1.7}
+    #seo-content h2{font-size:1.35rem;color:#0f172a;margin:2rem 0 .75rem}
+    #seo-content h3{font-size:1.05rem;color:#0f172a;margin:1.25rem 0 .5rem}
+    #seo-content p,#seo-content li{font-size:.95rem}
+    #seo-content ul{padding-left:1.4rem;margin:.5rem 0}
+    #seo-content .example{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0}
+    @media(prefers-color-scheme:dark){#seo-content{color:#cbd5e1}#seo-content h2,#seo-content h3{color:#f1f5f9}#seo-content .example{background:#1e293b;border-color:#334155}}
+  </style>
+  <h2>How to Use the Net Worth Calculator</h2>
+  <p>The Net Worth Calculator adds up all your assets and subtracts all your liabilities to show your true financial picture in one number. List everything you own (assets) — cash and savings, the current market value of your home, investment accounts, pensions, vehicles, and other valuable property — and everything you owe (liabilities) — mortgage balance, credit card debt, car finance, student loans, and any other outstanding loans. The calculator sums each category and shows your total net worth: Assets − Liabilities = Net Worth. A positive figure means you own more than you owe; a negative figure means you are technically insolvent (though this is common and not alarming for young people with mortgages and student loans).</p>
+  <p>Net worth is the single most comprehensive snapshot of your financial health because it captures both sides of your balance sheet simultaneously. Your income tells you how much money flows in; your spending tells you where it goes; but only net worth tells you whether all that activity is building lasting wealth or simply running in place. Tracking net worth regularly — quarterly or annually — reveals progress that day-to-day budgeting can miss. Even if you are not saving aggressively, rising property values, falling mortgage balances, and growing pension funds can quietly build substantial net worth over time. Conversely, an apparently comfortable income combined with growing consumer debt can mask a declining net worth.</p>
+  <p>For most households, property equity (home value minus mortgage) and pension savings are the two largest components of net worth, often dwarfing cash savings. This is why rising house prices have such a large impact on the wealth distribution — homeowners see net worth rise automatically even without actively saving, while renters must build wealth entirely through savings and investments. The calculator makes no judgement about the composition of your net worth, but seeing the breakdown clearly can inform decisions about whether to overpay your mortgage, increase pension contributions, or diversify into other asset classes.</p>
+
+  <h2>When to Calculate Your Net Worth</h2>
+  <ul>
+    <li><strong>Annual financial review:</strong> Track progress year-on-year to see whether your financial decisions are building wealth over time.</li>
+    <li><strong>Before major financial decisions:</strong> Check your balance sheet before taking on new debt, making a large investment, or buying a property.</li>
+    <li><strong>Retirement planning:</strong> Understand whether your current assets on a trajectory to fund the retirement lifestyle you want.</li>
+    <li><strong>Setting financial goals:</strong> Use your current net worth as a baseline, then set a target and work backwards to the savings rate needed to reach it.</li>
+    <li><strong>Estate planning:</strong> A clear asset/liability inventory is the starting point for wills, power of attorney, and inheritance planning.</li>
+  </ul>
+
+  <div class="example"><strong>Example:</strong> Assets: Home value £320,000, pension £45,000, ISA £18,000, cash £8,000, car £12,000 = £403,000. Liabilities: Mortgage £195,000, car loan £6,000, credit cards £2,500 = £203,500. Net worth = <strong>£199,500</strong>.</div>
+
+  <h2>Frequently Asked Questions</h2>
+  <h3>What is a good net worth by age?</h3>
+  <p>There is no universal "good" figure, but a common financial planning rule of thumb is to have saved one times your annual salary by age 30, three times by 40, six times by 50, and eight to ten times by retirement (65). These are rough benchmarks — your actual target should be based on your retirement spending needs and expected income sources (state pension, defined benefit pension, etc.).</p>
+  <h3>Should I include my pension in my net worth?</h3>
+  <p>Yes, for a complete picture. Include the current transfer value or estimated fund value of all pensions — workplace defined contribution schemes, SIPPs, and the estimated value of defined benefit (final salary) entitlements. Defined benefit pensions are harder to value exactly, but you can use a rough multiple of the annual pension accrued (typically 20–25× for comparison purposes).</p>
+  <h3>Should I include my home at market value or equity?</h3>
+  <p>Include your home at its current market value as an asset, and your outstanding mortgage as a liability. The difference (equity) is what matters for net worth, but entering them separately keeps the balance sheet accurate and shows how your mortgage is tracking as a proportion of property value.</p>
+  <h3>How often should I calculate my net worth?</h3>
+  <p>Quarterly or annually is common. More frequent tracking is not usually necessary unless you are in an active period of debt payoff or wealth accumulation and want to stay motivated. The key is consistency — use the same valuation methods and date each time so comparisons are meaningful.</p>
+  <h3>What is a negative net worth?</h3>
+  <p>A negative net worth means your total debts exceed your total assets. This is common in early adulthood — student loans plus a recently purchased home with a small deposit can easily create negative net worth even for financially responsible people. The trajectory matters more than the starting point: a rising net worth trending toward positive is a healthy sign regardless of the current number.</p>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good net worth by age?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A common benchmark: save 1× salary by 30, 3× by 40, 6× by 50, and 8–10× by retirement. These are rough guides — your actual target depends on retirement spending needs and income sources."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include my pension in my net worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Include the current fund value of all pensions — defined contribution schemes, SIPPs, and an estimated value for defined benefit pensions (often 20–25× annual accrued pension)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include my home at market value or equity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Include the home at market value as an asset and the mortgage balance as a liability. The difference is your equity. Entering them separately keeps the balance sheet accurate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I calculate my net worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quarterly or annually is sufficient for most people. The key is consistency — use the same valuation methods each time so comparisons are meaningful."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a negative net worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A negative net worth means total debts exceed total assets. This is common in early adulthood due to student loans and mortgages with small deposits. The upward trajectory matters more than the starting figure."
+      }
+    }
+  ]
+}
+</script>
 <footer style="background:#1a1a2e;margin-top:48px;padding:28px 24px;text-align:center;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:13px;color:#94a3b8;line-height:1.8">
 <div style="font-weight:700;color:#fff;font-size:15px">⚡ Tabutility</div>
 <div>Free, private, browser-based tools. No sign-up, no tracking.</div>
